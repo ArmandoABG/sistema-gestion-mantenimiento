@@ -1,0 +1,31 @@
+======================================================================
+REPORTE DE VALIDACION ESTATICA - PARTE 6
+======================================================================
+
+Base utilizada:
+sistema_mantenimiento_1.1_PARTE_5_COMPLETA.zip
+
+Validaciones ejecutadas antes de empaquetar:
+- 65 archivos PHP revisados con php -l: todos correctos.
+- JavaScript de las cuatro interfaces modificadas revisado con node --check:
+  - mantenimiento_activo.php: correcto.
+  - mantenimientos_finalizados.php: correcto.
+  - recursos_mantenimiento.php: correcto.
+  - solicitudes_historial.php: correcto.
+- Balance de llaves CSS:
+  - style_mantenimiento_activo.css: correcto.
+  - style_mantenimientos_finalizados.css: correcto.
+  - style_recursos_mantenimiento.css: correcto.
+  - style_solicitudes_historial.css: correcto.
+- Identificadores HTML estáticos duplicados en las cuatro interfaces: ninguno.
+- require/include literales apuntando a archivos inexistentes: ninguno.
+- Marcadores PDO nombrados repetidos dentro de consultas preparadas literales
+  modificadas: ninguno.
+- Integridad de los archivos ZIP: comprobada con unzip -t.
+
+Alcance de la validación:
+Esta validación confirma sintaxis, estructura estática y consistencia del
+paquete. El entorno de trabajo no dispone de una conexión a la base MySQL del
+usuario, por lo que las pruebas funcionales contra sus datos deben ejecutarse
+siguiendo LEEME_PARTE_6.txt y 09_VERIFICAR_CIERRE_RECURSOS_PARTE_6.sql.
+======================================================================

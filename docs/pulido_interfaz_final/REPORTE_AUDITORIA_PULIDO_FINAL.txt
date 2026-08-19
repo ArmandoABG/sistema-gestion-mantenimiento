@@ -1,0 +1,28 @@
+REPORTE DE AUDITORÍA · PULIDO FINAL
+
+RESULTADO GENERAL
+No se encontraron fallos críticos nuevos en la lógica del sistema durante esta revisión estática.
+
+HALLAZGO REAL CORREGIDO
+El formulario de cierre generaba los campos adicionales con la clase:
+  mact-close-resource-other-row
+pero la hoja de estilos tenía reglas para:
+  mact-close-other-row
+Como resultado, la funcionalidad era correcta pero los inputs quedaban prácticamente sin el diseño previsto.
+Se corrigió la clase estilizada y se eliminaron las reglas muertas anteriores.
+
+HISTORIAL TÉCNICO
+La función de cancelaciones obtiene hasta 100 registros. Sin un contenedor de scroll, un técnico con muchas cancelaciones podía terminar con una página demasiado larga. La interfaz ahora contiene el listado en escritorio y conserva un flujo natural en móvil.
+
+NO SE CAMBIÓ
+- Guardado de herramientas y refacciones reales.
+- Aprendizaje de urgencias por equipo.
+- Recomendaciones administrativas.
+- Sugerencias de recursos no catalogados.
+- Cancelación administrativa.
+- Tiempos de ejecución y pausas.
+- Resultados TERMINADO / PARCIAL / PROVISIONAL.
+- Permisos, sesiones, CSRF o transacciones.
+
+CONCLUSIÓN
+A nivel estático la versión queda coherente con los últimos cambios. La prueba final necesaria es visual/funcional en el navegador local, porque el CSS depende del tamaño real de pantalla y del contenido real de la base de datos.

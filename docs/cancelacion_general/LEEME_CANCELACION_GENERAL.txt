@@ -1,0 +1,60 @@
+CANCELACIÓN GENERAL Y HISTORIAL PARA TÉCNICOS
+================================================
+
+INSTALACIÓN
+1. Cierra sesión en el sistema.
+2. Copia las carpetas JS, css y funciones del parche sobre la raíz del proyecto.
+3. Confirma el reemplazo de los archivos indicados.
+4. Inicia sesión nuevamente.
+5. Presiona Ctrl + F5 en:
+   - Solicitudes > Todas las solicitudes.
+   - Técnico > Mantenimientos asignados.
+   - Técnico > Actividad actual.
+   - Técnico > Mantenimientos finalizados.
+
+No se requiere migración SQL.
+
+FUNCIONAMIENTO
+- Los mantenimientos correctivos programables, modificaciones/mejoras,
+  urgencias y rutinarios pueden cancelarse administrativamente.
+- Se permiten los estados APROBADO, AGENDADO, ATRASADO, EN_PROCESO y PAUSADO.
+- Las solicitudes todavía pendientes de revisión se rechazan; no se cancelan.
+- Los mantenimientos terminados o con cierre técnico no pueden cancelarse.
+- El motivo es obligatorio, entre 15 y 500 caracteres.
+- Si ya inició, se conserva el tiempo real trabajado y las pausas.
+- No se crea un cierre técnico falso.
+- Las asignaciones, ejecuciones, programaciones e incumplimientos abiertos
+  quedan cerrados de forma coherente.
+
+VISIBILIDAD PARA EL TÉCNICO
+- Recibe una notificación con el motivo.
+- En Mantenimientos asignados aparece un aviso de cancelación reciente.
+- Si estaba en Actividad actual, la pantalla detecta la cancelación y muestra
+  el motivo sin permitir continuar.
+- En Mantenimientos finalizados existe la sección
+  "Actividades que te fueron canceladas", con motivo, responsable, fecha,
+  equipo, tipo y tiempo trabajado conservado.
+
+RUTINAS
+- Si se cancela antes de iniciar, el periodo puede reactivarse desde Rutinas.
+- Si ya había iniciado, ese mismo periodo queda cancelado definitivamente;
+  las siguientes fechas de la plantilla continúan normalmente.
+
+PRUEBAS RECOMENDADAS
+A. Correctivo programable antes de iniciar:
+   asigna un técnico, cancela desde Todas las solicitudes y confirma que
+   desaparezca de asignados, llegue la notificación y aparezca en historial.
+
+B. Modificación/mejora en ejecución:
+   inicia como técnico, cancela como administrador y espera la actualización
+   de Actividad actual. Debe mostrar el motivo y bloquear cualquier acción.
+
+C. Urgencia pausada:
+   cancela y confirma que cierre la pausa, conserve el tiempo y no genere cierre.
+
+D. Rutina antes y después de iniciar:
+   antes de iniciar debe permitir reactivar el periodo; después de iniciar no
+   debe reutilizarse el mismo periodo.
+
+E. Ejecuta 12_VERIFICAR_CANCELACION_GENERAL.sql.
+   La primera fila debe indicar TODO CORRECTO y todos los contadores en 0.

@@ -1,0 +1,130 @@
+SISTEMA DE MANTENIMIENTO 1.1
+CORRECCIONES FINALES 2 - 06/08/2026
+============================================================
+
+ESTE PAQUETE PARTE DE:
+- La versión final auditada y corregida del 06/08/2026.
+- Catálogo con códigos automáticos HER-### y REF-###.
+- Recursos en rutinas, programación, urgencias, cierres e historiales.
+
+NO REQUIERE MIGRACIÓN SQL.
+NO ELIMINA INFORMACIÓN.
+NO CAMBIA LOS FOLIOS EXISTENTES.
+
+ARCHIVOS MODIFICADOS
+------------------------------------------------------------
+JS/solicitudes_pendientes.php
+JS/solicitudes_historial.php
+css/style_solicitudes_historial.css
+funciones/solicitudes_pendientes_funciones.php
+funciones/solicitudes_historial_funciones.php
+
+INSTALACIÓN
+------------------------------------------------------------
+1. Cierra sesión en el sistema.
+2. Conserva el respaldo actual.
+3. Copia las carpetas JS, css, funciones y docs del paquete.
+4. Pégalas sobre la raíz de sistema_mantenimiento_1.1.
+5. Confirma el reemplazo de los cinco archivos modificados.
+6. Inicia sesión como administrador.
+7. Presiona Ctrl + F5 en:
+   - Solicitudes > Por revisar.
+   - Solicitudes > Todas las solicitudes.
+
+CAMBIO 1: URGENCIAS POR REVISAR
+------------------------------------------------------------
+En una urgencia, Tipo de falla y Causa de avería dejaron de ser
+obligatorios para el administrador.
+
+Esto permite que el administrador:
+- Abra la urgencia.
+- Agregue o quite herramientas y refacciones.
+- Corrija seguridad, impacto u otros datos conocidos.
+- Guarde sin inventar un diagnóstico.
+
+Si Tipo de falla o Causa continúan vacíos, el primer técnico que
+inicie la urgencia deberá capturarlos. La validación técnica al
+inicio continúa activa.
+
+CAMBIO 2: CANCELACIÓN ADMINISTRATIVA DE URGENCIAS
+------------------------------------------------------------
+Ubicación:
+Solicitudes > Todas las solicitudes > abrir expediente de urgencia.
+
+El botón aparecerá solamente en urgencias activas con estado:
+- AGENDADO
+- EN_PROCESO
+- PAUSADO
+- ATRASADO
+
+Al cancelar:
+- Se solicita un motivo de 15 a 500 caracteres.
+- Se bloquean los registros dentro de una transacción.
+- Se detienen las ejecuciones pendientes, en proceso o pausadas.
+- Se conserva el tiempo activo acumulado hasta la cancelación.
+- Se cierran las pausas abiertas de la propia urgencia.
+- Se retiran las participaciones activas de los técnicos.
+- La solicitud queda CANCELADA.
+- No se crea un cierre técnico falso.
+- No se marca como TERMINADO, PARCIAL ni PROVISIONAL.
+- Se conserva historial, movimiento y auditoría.
+- Se notifica a técnicos y solicitante.
+- Si la urgencia había pausado otro mantenimiento, se avisa al
+  técnico que ya puede reanudarlo manualmente.
+
+No puede cancelarse mediante esta acción si:
+- No es una urgencia.
+- Ya está terminada, rechazada o cancelada.
+- Ya tiene cierre técnico.
+- Existe una ejecución terminada.
+
+CAMBIO 3: TRAZABILIDAD
+------------------------------------------------------------
+Se reorganizó la línea de tiempo del expediente:
+- Tarjetas con ancho controlado.
+- Descripciones con salto de línea correcto.
+- Fecha, responsable y cambio de estado separados.
+- Mejor presentación en computadora y móvil.
+- Eventos cancelados/rechazados y terminados/aprobados con
+  indicadores visuales diferenciados.
+
+PRUEBAS OBLIGATORIAS
+------------------------------------------------------------
+A. Recomendaciones sin diagnóstico
+1. Publica una urgencia sin tipo de falla ni causa.
+2. En Por revisar, agrega herramientas/refacciones.
+3. Guarda la edición.
+4. Debe guardar sin exigir tipo de falla ni causa.
+5. Entra como técnico e inicia.
+6. El técnico debe capturar el diagnóstico faltante.
+
+B. Cancelación antes de iniciar
+1. Publica y acepta una urgencia.
+2. En Todas las solicitudes abre el expediente.
+3. Presiona Cancelar urgencia.
+4. Escribe el motivo y confirma.
+5. Debe quedar CANCELADA y desaparecer de actividades activas.
+
+C. Cancelación durante ejecución
+1. Inicia una urgencia como técnico.
+2. Como administrador abre su expediente.
+3. Presiona Detener y cancelar urgencia.
+4. Confirma el motivo.
+5. El técnico ya no debe poder continuar ni finalizar.
+6. No debe existir cierre técnico para esa cancelación.
+7. El tiempo realizado hasta el corte debe permanecer registrado.
+
+D. Trazabilidad
+1. Abre cualquier expediente con varios movimientos.
+2. Despliega Trazabilidad.
+3. Revisa que el texto no se vea estrecho, vertical o alargado.
+
+VERIFICACIÓN SQL
+------------------------------------------------------------
+El archivo 11_VERIFICAR_CORRECCIONES_FINALES_2.sql es de solo
+lectura. Ejecútalo después de probar una cancelación.
+
+RESPALDO RECOMENDADO
+------------------------------------------------------------
+Cuando terminen las pruebas, genera un nuevo respaldo llamado:
+sistema_mantenimiento_final_verificado_06-08-2026.sql

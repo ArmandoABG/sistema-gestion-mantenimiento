@@ -1,0 +1,143 @@
+======================================================================
+SISTEMA DE MANTENIMIENTO 1.1
+AJUSTES FINALES - CÓDIGOS, URGENCIAS, SEGURIDAD E INTERFAZ
+======================================================================
+
+BASE UTILIZADA
+--------------
+Estos archivos fueron preparados directamente sobre el sistema entregado como:
+
+    sistema_mantenimiento_1.1-06-08-2026.zip
+
+NO REQUIERE MIGRACIÓN SQL
+-------------------------
+La estructura de base de datos instalada en las Partes 1 a 6 es suficiente.
+No vuelvas a ejecutar migraciones anteriores.
+
+ARCHIVOS QUE REEMPLAZA
+----------------------
+funciones/recursos_mantenimiento_servicio.php
+funciones/recursos_mantenimiento_funciones.php
+JS/recursos_mantenimiento.php
+css/style_recursos_mantenimiento.css
+
+funciones/solicitudes_pendientes_funciones.php
+JS/solicitudes_pendientes.php
+css/style_solicitudes_pendientes.css
+
+funciones/solicitud_correctivo_programable_funciones.php
+JS/solicitud_correctivo_programable.php
+css/style_solicitud_correctivo_programable.css
+
+funciones/solicitud_modificacion_mejora_funciones.php
+JS/solicitud_modificacion_mejora.php
+css/style_solicitud_modificacion_mejora.css
+
+ARCHIVOS DE APOYO
+-----------------
+docs/ajustes_finales/10_VERIFICAR_AJUSTES_FINALES.sql
+docs/ajustes_finales/LEEME_AJUSTES_FINALES.txt
+docs/ajustes_finales/REPORTE_AUDITORIA_AJUSTES_FINALES.txt
+
+INSTALACIÓN
+-----------
+1. Cierra sesión en el sistema.
+2. Haz una copia rápida de los archivos que serán reemplazados.
+3. Extrae AJUSTES_FINALES_CODIGOS_URGENCIAS_INTERFAZ.zip.
+4. Copia las carpetas funciones, JS, css y docs sobre la raíz del proyecto.
+5. Confirma el reemplazo de los archivos.
+6. Inicia sesión nuevamente.
+7. Presiona Ctrl + F5 en:
+   - Catálogos > Herramientas y refacciones.
+   - Solicitudes > Por revisar.
+   - Nueva solicitud > Correctivo programable.
+   - Nueva solicitud > Modificación o mejora.
+
+CÓDIGOS AUTOMÁTICOS
+-------------------
+- Herramientas: HER-001, HER-002, HER-003...
+- Refacciones: REF-001, REF-002, REF-003...
+- Las secuencias son independientes.
+- El código se reserva dentro de una transacción para impedir duplicados si
+  dos administradores guardan al mismo tiempo.
+- Los recursos existentes sin código se completan automáticamente la primera
+  vez que un administrador abre el catálogo actualizado.
+- Los códigos existentes se conservan para no romper etiquetas o referencias
+  históricas.
+- Si ya existe un consecutivo, el sistema busca el siguiente libre.
+- Un código manual antiguo como REF-6204 no obliga a que la nueva secuencia
+  empiece en REF-6205; la serie automática utiliza el siguiente consecutivo
+  libre desde REF-001.
+- Las sugerencias aprobadas por el administrador también reciben código
+  automático.
+
+RECOMENDACIONES DE URGENCIAS EN "POR REVISAR"
+----------------------------------------------
+Al abrir una solicitud CORRECTIVO_URGENTE, el administrador puede:
+- Buscar y seleccionar una o varias herramientas.
+- Buscar y seleccionar una o varias refacciones.
+- Conservar o retirar recomendaciones históricas no catalogadas.
+- Dejar ambas listas vacías cuando todavía no se conoce qué se necesitará.
+
+Para guardar:
+1. Selecciona los recursos.
+2. Escribe el motivo de la edición, con al menos 10 caracteres.
+3. Presiona "Guardar datos y recomendaciones".
+4. Después presiona "Marcar como revisada".
+
+La selección se guarda en dos niveles:
+- Fotografía de la solicitud urgente actual.
+- Memoria de CORRECTIVO_URGENTE del equipo exacto seleccionado.
+
+No se comparte entre equipos. Una recomendación del Molino 01 no se utiliza
+para la Banda 03.
+
+Las herramientas y refacciones quedan bloqueadas cuando el mantenimiento ya
+comenzó. Si había técnicos aceptados y la lista cambia antes del inicio, se les
+genera una notificación.
+
+BOTONES DE SUGERENCIAS
+----------------------
+Se corrigió la distribución de los botones del apartado "Sugerencias de
+técnicos". Ahora se distinguen claramente:
+- Rechazar.
+- Agregar al catálogo.
+- Agregar y recomendar.
+
+En pantallas estrechas se acomodan en columnas completas sin cortarse.
+
+TRABAJO PELIGROSO
+-----------------
+La revisión detectó dos formularios incompletos y fueron corregidos:
+
+CORRECTIVO PROGRAMABLE
+- Conserva Trabajo peligroso, nivel de riesgo y paro del equipo.
+- Ahora también exige una nota breve de 3 a 200 caracteres cuando se marca
+  como peligroso.
+
+MODIFICACIÓN O MEJORA
+- Ahora permite marcar Trabajo peligroso.
+- Permite indicar nivel de riesgo y paro del equipo.
+- Exige la nota breve cuando corresponde.
+
+POR REVISAR
+- El administrador puede corregir Trabajo peligroso, nivel de riesgo, paro y
+  nota en todos los tipos normales y urgentes.
+
+PRUEBAS RECOMENDADAS
+--------------------
+1. Crea una herramienta y comprueba que reciba HER-### automáticamente.
+2. Crea una refacción y comprueba que reciba REF-### automáticamente.
+3. Aprueba una sugerencia y confirma que también reciba código.
+4. Abre una urgencia en Por revisar, agrega recursos, guarda y márcala como
+   revisada.
+5. Entra como técnico y comprueba que vea esos recursos.
+6. Abre otra urgencia del mismo equipo y verifica la memoria.
+7. Abre una urgencia de otro equipo y confirma que no copie la memoria.
+8. Prueba Trabajo peligroso en Correctivo programable y Modificación/mejora.
+9. Ejecuta 10_VERIFICAR_AJUSTES_FINALES.sql después de abrir el catálogo.
+
+IMPORTANTE
+----------
+La consulta de verificación es solamente de lectura. No crea, modifica ni
+elimina registros.

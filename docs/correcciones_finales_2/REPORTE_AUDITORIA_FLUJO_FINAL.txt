@@ -1,0 +1,106 @@
+SISTEMA DE MANTENIMIENTO 1.1
+REPORTE DE AUDITORÍA DEL FLUJO FINAL
+Fecha: 06/08/2026
+============================================================
+
+1. HISTORIAL DE MANTENIMIENTOS POR EQUIPO
+------------------------------------------------------------
+Sí existe una forma de consultarlo actualmente.
+
+TÉCNICO:
+Mantenimientos finalizados > Todos los mantenimientos
+- Puede buscar por nombre o código del equipo.
+- Puede consultar el último y los anteriores.
+- Puede filtrar cómo quedó: TERMINADO, PARCIAL o PROVISIONAL.
+- Ve trabajo realizado, técnicos, recursos recomendados y
+  recursos realmente utilizados.
+
+ADMINISTRADOR:
+Todas las solicitudes
+- Puede buscar por equipo o código.
+- Abre el expediente completo de cualquier mantenimiento.
+- Ve cierre, resultado, tiempos, trazabilidad y auditoría.
+
+No existe una pantalla independiente llamada "Historial del equipo"
+con un botón dentro de la ficha del equipo. La información sí está
+disponible en los historiales generales y no se agregó un módulo
+duplicado en este parche.
+
+2. FECHA Y HORA LÍMITE ANTIGUAS
+------------------------------------------------------------
+Resultado real de la revisión:
+
+ELIMINADO DE CAPTURA:
+- No existe campo de Hora límite.
+- No existe campo de Horas estimadas.
+- No existe campo de Duración estimada.
+- El administrador solamente selecciona Fecha programada.
+- USA_HORAS_ESTIMADAS está configurado en 0.
+
+COMPORTAMIENTO DEL TÉCNICO:
+- Puede iniciar después de la fecha programada.
+- Puede finalizar cuando realmente termine.
+- No existe un bloqueo por hora o duración estimada.
+- Las horas reales de inicio, pausas, reanudaciones y fin quedan
+  registradas.
+- PERMITIR_EJECUTAR_ATRASADOS está configurado en 1.
+
+LÓGICA QUE TODAVÍA EXISTE:
+- Internamente programaciones_mantenimiento conserva fecha_limite.
+- Al programar, fecha_limite recibe la misma fecha_programada.
+- Se utiliza como referencia de cumplimiento al final del día.
+- Si se supera, el sistema puede mostrar ATRASADO/VENCIDA y crear
+  registros de incumplimiento.
+- Esta referencia aparece en agenda, historial, paneles e informes.
+- No impide que el técnico inicie o finalice.
+
+Conclusión:
+La funcionalidad antigua de imponer fecha + hora + horas estimadas
+ya no está activa. Permanece una medición administrativa por fecha
+programada para atrasos e indicadores. No se eliminó porque forma
+parte de agenda, incumplimientos y reportes actuales.
+
+3. URGENCIAS Y DIAGNÓSTICO
+------------------------------------------------------------
+- En Por revisar, el diagnóstico ahora es opcional para el admin.
+- El impacto operativo continúa siendo obligatorio en la urgencia.
+- Las recomendaciones de recursos pueden guardarse por separado.
+- Si faltan tipo de falla o causa, el primer técnico debe capturarlos
+  al iniciar la urgencia.
+
+4. CANCELACIÓN DE URGENCIAS ACTIVAS
+------------------------------------------------------------
+Antes de este parche no había una operación administrativa que
+interrumpiera una urgencia ya iniciada sin esperar el cierre técnico.
+
+Ahora existe en el expediente de Todas las solicitudes y:
+- Protege concurrencia con transacción y FOR UPDATE.
+- Detiene ejecuciones activas.
+- Retira participaciones.
+- Conserva tiempos realizados.
+- Registra historial, movimiento y auditoría.
+- Notifica a los involucrados.
+- No falsifica un resultado de mantenimiento.
+
+5. TRAZABILIDAD
+------------------------------------------------------------
+La interfaz tenía reglas CSS superpuestas que podían producir una
+columna demasiado angosta y textos largos. La línea de tiempo se
+redefinió con tarjetas flexibles y ajuste de texto.
+
+6. VALIDACIONES TÉCNICAS REALIZADAS
+------------------------------------------------------------
+- 65 archivos PHP revisados con php -l: 0 errores.
+- 28 bloques JavaScript revisados con node --check: 0 errores.
+- 59 require/include estáticos comprobados: 0 rutas faltantes.
+- Marcadores PDO repetidos en endpoints modificados: 0.
+- Balance de llaves de la hoja CSS modificada: correcto.
+- No se requiere cambio de estructura SQL.
+
+7. OBSERVACIÓN FUNCIONAL
+------------------------------------------------------------
+La cancelación administrativa no crea un registro en
+cierres_mantenimiento. Esto es intencional: una solicitud falsa o
+cancelada no debe aparecer como trabajo TERMINADO, PARCIAL o
+PROVISIONAL. Su evidencia queda en estado CANCELADO, historial,
+movimientos y auditoría.

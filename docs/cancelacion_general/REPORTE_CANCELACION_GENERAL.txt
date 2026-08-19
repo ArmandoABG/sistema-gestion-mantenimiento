@@ -1,0 +1,35 @@
+REPORTE DE DISEÑO: CANCELACIÓN GENERAL
+======================================
+
+La cancelación general es una mejora recomendable porque evita que una actividad
+incorrecta, duplicada, innecesaria o simulada dependa del técnico para poder
+cerrarse. Se implementó con las siguientes protecciones:
+
+1. Cancelar no equivale a terminar.
+   La solicitud queda CANCELADO y no recibe resultado TERMINADO, PARCIAL ni
+   PROVISIONAL.
+
+2. No se destruye historial.
+   Se conservan solicitud, programación, asignaciones, ejecuciones, pausas,
+   tiempos, recursos recomendados y movimientos de auditoría.
+
+3. No se puede cancelar un cierre real.
+   Si existe cierre técnico o una ejecución TERMINADA, la operación se rechaza.
+
+4. El técnico conoce el motivo.
+   Se genera notificación, historial individual de retiro y una sección de
+   consulta permanente en su historial.
+
+5. Se evitan residuos activos.
+   No quedan asignaciones activas, ejecuciones abiertas, pausas abiertas,
+   programaciones vigentes ni incumplimientos pendientes.
+
+6. Las rutinas conservan su lógica.
+   La cancelación no modifica la plantilla. Un periodo sin iniciar puede
+   reactivarse; un periodo ya iniciado no se reutiliza.
+
+7. Restauración controlada.
+   Los mantenimientos normales cancelados no se reabren para evitar alterar la
+   trazabilidad. Si vuelve a ser necesario el trabajo, debe generarse una nueva
+   solicitud. La excepción es el recordatorio rutinario no iniciado, que dispone
+   de una reactivación específica.

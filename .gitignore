@@ -1,0 +1,15 @@
+.env
+.env.*
+
+inc/conexion.php
+
+*.log
+*.zip
+*.rar
+*.7z
+
+.vscode/
+.idea/
+
+backups/
+backup/

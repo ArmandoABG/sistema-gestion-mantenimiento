@@ -1,0 +1,67 @@
+======================================================================
+REPORTE DE AUDITORÍA - AJUSTES FINALES
+======================================================================
+
+ALCANCE REVISADO
+----------------
+- Catálogo de herramientas y refacciones.
+- Sugerencias generadas por cierres técnicos.
+- Solicitudes pendientes / Por revisar.
+- Correctivo programable.
+- Modificación o mejora.
+- Recomendaciones urgentes por equipo.
+- Campos de Trabajo peligroso agregados en las etapas anteriores.
+
+HALLAZGOS CORREGIDOS
+--------------------
+1. El código del catálogo todavía dependía de captura manual.
+   CORRECCIÓN: generación automática, secuencias separadas y bloqueo
+   transaccional.
+
+2. Los recursos históricos que no tenían código podían permanecer vacíos.
+   CORRECCIÓN: completado automático al abrir el catálogo administrativo.
+
+3. Los botones de sugerencias podían comprimirse, cortarse o confundirse.
+   CORRECCIÓN: jerarquía visual, colores por acción y diseño adaptable.
+
+4. El administrador no tenía una pantalla clara para recomendar recursos en
+   una urgencia antes de que el técnico comenzara.
+   CORRECCIÓN: buscadores múltiples dentro de Solicitudes > Por revisar.
+
+5. Correctivo programable no capturaba la explicación breve del peligro.
+   CORRECCIÓN: campo visible, validación cliente/servidor y persistencia.
+
+6. Modificación o mejora guardaba de forma fija que no era peligrosa.
+   CORRECCIÓN: controles completos de peligro, riesgo, paro y nota.
+
+7. Por revisar mostraba seguridad de manera incompleta según el tipo.
+   CORRECCIÓN: bloque unificado editable por el administrador.
+
+REGLAS DE INTEGRIDAD CONSERVADAS
+--------------------------------
+- No se elimina historial.
+- No se cambian códigos existentes.
+- Los recursos recomendados y realmente utilizados siguen separados.
+- La memoria urgente se mantiene por equipo + CORRECTIVO_URGENTE.
+- Una lista vacía de urgencia sigue siendo válida.
+- No se modifican recomendaciones después de iniciar.
+- Las rutinas continúan dependiendo de su plantilla.
+- Los cierres normales no alteran automáticamente recomendaciones.
+
+VALIDACIONES TÉCNICAS REALIZADAS
+--------------------------------
+- Sintaxis PHP de todos los archivos.
+- Sintaxis de los bloques JavaScript incluidos en las vistas PHP.
+- Balance de llaves en hojas CSS.
+- Existencia de rutas require/include estáticas.
+- Búsqueda de marcadores PDO repetidos en las consultas modificadas.
+- Prueba aislada de la secuencia automática:
+  HER-001 existente -> HER-002 -> HER-003.
+  REF-6204 existente -> REF-001 -> REF-002.
+- Integridad de los paquetes ZIP.
+
+LÍMITE DE LA AUDITORÍA
+----------------------
+Las validaciones anteriores son estáticas y de lógica aislada. La última
+comprobación funcional debe realizarse en el MySQL y navegador del equipo del
+usuario mediante las pruebas descritas en LEEME_AJUSTES_FINALES.txt.

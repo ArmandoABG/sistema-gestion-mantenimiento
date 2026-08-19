@@ -1,0 +1,1819 @@
+/* ==========================================================================
+   DASHBOARD DEL TÉCNICO
+   Estilo profesional basado en Movimientos del sistema.
+   Hoja consolidada: una sola definición por componente.
+   ========================================================================== */
+
+/* 1. Variables
+   ========================================================================== */
+
+:root {
+    --dtec-ink: #10253b;
+    --dtec-ink-soft: #1d3851;
+    --dtec-muted: #63788c;
+    --dtec-muted-light: #8394a5;
+    --dtec-line: #d9e4ed;
+    --dtec-line-strong: #c9d8e4;
+    --dtec-surface: #ffffff;
+    --dtec-soft: #f5f9fc;
+    --dtec-primary: #1d6b9e;
+    --dtec-primary-dark: #103a5e;
+    --dtec-primary-pale: #e9f4fb;
+    --dtec-blue: #167cad;
+    --dtec-blue-pale: #e8f6fb;
+    --dtec-cyan: #17b8c4;
+    --dtec-cyan-pale: #e4fafb;
+    --dtec-success: #17865f;
+    --dtec-success-pale: #edf9f4;
+    --dtec-warning: #b9780f;
+    --dtec-warning-pale: #fff7e8;
+    --dtec-danger: #c4463f;
+    --dtec-danger-pale: #fff0ee;
+    --dtec-violet: #6856c8;
+    --dtec-violet-pale: #f0edff;
+    --dtec-shadow-xs: 0 5px 14px rgba(6, 23, 40, .04);
+    --dtec-shadow-sm: 0 12px 30px rgba(6, 23, 40, .07);
+    --dtec-shadow: 0 20px 50px rgba(6, 23, 40, .09);
+    --dtec-shadow-lg: 0 30px 75px rgba(6, 23, 40, .14);
+    --dtec-radius-2xl: 28px;
+    --dtec-radius-xl: 22px;
+    --dtec-radius-lg: 18px;
+    --dtec-radius-md: 14px;
+    --dtec-transition: 220ms cubic-bezier(.2, .8, .2, 1);
+}
+
+/* 2. Base
+   ========================================================================== */
+
+[hidden] {
+    display: none !important;
+}
+
+.dtec-page,
+.dtec-page * {
+    box-sizing: border-box;
+}
+
+.dtec-page {
+    font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+html,
+body {
+    background: #edf3f7;
+}
+
+body {
+    margin: 0;
+    color: var(--dtec-ink);
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+svg {
+    display: block;
+}
+
+.dtec-page {
+    width: 100%;
+    min-width: 0;
+    min-height: calc(100vh - var(--sm-topbar-height, 68px));
+    padding: clamp(18px, 2.5vw, 34px) clamp(18px, 2.7vw, 42px) 290px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--dtec-ink);
+    background:
+        radial-gradient(circle at 6% 7%, rgba(29, 107, 158, .10), transparent 27%),
+        radial-gradient(circle at 96% 88%, rgba(23, 184, 196, .08), transparent 28%),
+        linear-gradient(145deg, #edf3f7 0%, #f8fbfd 48%, #edf4f7 100%);
+}
+
+.dtec-page > :not(.dtec-ambient):not(.dtec-tools-background) {
+    position: relative;
+    z-index: 2;
+}
+
+.dtec-svg-sprite {
+    width: 0;
+    height: 0;
+    position: absolute;
+    overflow: hidden;
+}
+
+.dtec-ambient {
+    position: fixed;
+    z-index: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(12px);
+    opacity: .72;
+}
+
+.dtec-ambient--one {
+    width: 390px;
+    height: 390px;
+    top: 150px;
+    right: -235px;
+    background: radial-gradient(circle, rgba(29, 107, 158, .14), transparent 68%);
+}
+
+.dtec-ambient--two {
+    width: 460px;
+    height: 460px;
+    left: -320px;
+    bottom: 30px;
+    background: radial-gradient(circle, rgba(23, 184, 196, .11), transparent 68%);
+}
+
+/* 3. Tipografía y contenedores
+   ========================================================================== */
+
+.dtec-heading,
+.dtec-guides,
+.dtec-status,
+.dtec-profile,
+.dtec-alert,
+.dtec-kpis,
+.dtec-card,
+.dtec-grid,
+.dtec-footer {
+    width: min(1560px, 100%);
+    margin-inline: auto;
+}
+
+.dtec-heading h1,
+.dtec-card h2,
+.dtec-current__main h3 {
+    margin: 0;
+    color: var(--dtec-ink);
+    letter-spacing: -.025em;
+}
+
+.dtec-eyebrow {
+    margin: 0 0 7px;
+    color: var(--dtec-primary-dark);
+    font-size: .72rem;
+    font-weight: 850;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+/* 4. Hero
+   ========================================================================== */
+
+.dtec-heading.dtec-hero {
+    min-height: 250px;
+    margin-bottom: 18px;
+    padding: clamp(28px, 3.6vw, 46px);
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: var(--dtec-radius-2xl);
+    color: #fff;
+    background:
+        radial-gradient(circle at 88% 4%, rgba(66, 212, 213, .25), transparent 28%),
+        radial-gradient(circle at 3% 105%, rgba(29, 107, 158, .38), transparent 38%),
+        linear-gradient(132deg, #061728 0%, #0c2d4a 52%, #0d3a56 100%);
+    box-shadow: var(--dtec-shadow-lg);
+    animation: dtecHeroIn .7s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.dtec-hero::before,
+.dtec-hero::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.dtec-hero::before {
+    width: 340px;
+    height: 340px;
+    top: -185px;
+    right: -85px;
+    border: 1px solid rgba(255, 255, 255, .11);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 54px rgba(255, 255, 255, .026),
+        0 0 0 108px rgba(255, 255, 255, .015);
+}
+
+.dtec-hero::after {
+    width: 230px;
+    height: 230px;
+    right: 19%;
+    bottom: -192px;
+    border: 1px solid rgba(66, 212, 213, .14);
+    border-radius: 52px;
+    transform: rotate(30deg);
+}
+
+.dtec-hero__pattern {
+    position: absolute;
+    inset: 0;
+    opacity: .1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, .13) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .13) 1px, transparent 1px);
+    background-size: 42px 42px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 52%, #000);
+    mask-image: linear-gradient(90deg, transparent, #000 52%, #000);
+}
+
+.dtec-hero__content {
+    min-height: 158px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(28px, 5vw, 72px);
+}
+
+.dtec-hero__copy {
+    max-width: 860px;
+}
+
+.dtec-hero .dtec-eyebrow {
+    width: fit-content;
+    margin: 0 0 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, .75);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .14em;
+}
+
+.dtec-eyebrow__icon {
+    width: 31px;
+    height: 31px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 10px;
+    color: #54d7d8;
+    background: rgba(255, 255, 255, .065);
+}
+
+.dtec-eyebrow__icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dtec-hero h1 {
+    margin: 0 0 13px;
+    color: #fff;
+    font-size: clamp(36px, 4.3vw, 58px);
+    font-weight: 900;
+    line-height: 1.03;
+    letter-spacing: -.048em;
+}
+
+.dtec-hero__description {
+    max-width: 760px;
+    margin: 0;
+    color: rgba(255, 255, 255, .72);
+    font-size: clamp(15px, 1.4vw, 17px);
+    font-weight: 520;
+    line-height: 1.72;
+}
+
+.dtec-hero__meta {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    color: rgba(255, 255, 255, .58);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.dtec-hero__meta > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dtec-hero__meta strong {
+    color: rgba(255, 255, 255, .86);
+    font-weight: 850;
+}
+
+.dtec-live-dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: #18a97c;
+    box-shadow: 0 0 0 5px rgba(24, 169, 124, .14);
+    animation: dtecLive 2s ease-in-out infinite;
+}
+
+.dtec-hero__actions {
+    min-width: 292px;
+    display: grid;
+    gap: 13px;
+}
+
+.dtec-hero__mini-card {
+    padding: 15px 16px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .075);
+    box-shadow: inset 0 1px rgba(255, 255, 255, .04);
+    backdrop-filter: blur(10px);
+}
+
+.dtec-hero__mini-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    color: #65dfe0;
+    background: rgba(101, 223, 224, .12);
+}
+
+.dtec-hero__mini-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dtec-hero__mini-card small,
+.dtec-hero__mini-card strong {
+    display: block;
+}
+
+.dtec-hero__mini-card small {
+    margin-bottom: 4px;
+    color: rgba(255, 255, 255, .48);
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.dtec-hero__mini-card strong {
+    color: rgba(255, 255, 255, .9);
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+/* 5. Botones y enlaces de acción
+   ========================================================================== */
+
+.dtec-button,
+.dtec-action,
+.dtec-card__link,
+.dtec-alert a {
+    font: inherit;
+}
+
+.dtec-button,
+.dtec-action {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 12px 18px;
+    font-size: .84rem;
+    font-weight: 850;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+        transform var(--dtec-transition),
+        border-color var(--dtec-transition),
+        background var(--dtec-transition),
+        color var(--dtec-transition),
+        box-shadow var(--dtec-transition);
+}
+
+.dtec-button::before,
+.dtec-action::before {
+    content: "";
+    width: 34%;
+    height: 180%;
+    position: absolute;
+    top: -40%;
+    left: -50%;
+    background: rgba(255, 255, 255, .24);
+    transform: rotate(22deg);
+    transition: left .48s ease;
+}
+
+.dtec-button:hover::before,
+.dtec-action:hover::before {
+    left: 120%;
+}
+
+.dtec-button svg,
+.dtec-action svg {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    z-index: 1;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dtec-button > span,
+.dtec-action > span {
+    position: relative;
+    z-index: 1;
+}
+
+.dtec-button:hover:not(:disabled),
+.dtec-action:hover {
+    transform: translateY(-2px);
+}
+
+.dtec-button:active:not(:disabled),
+.dtec-action:active {
+    transform: translateY(0) scale(.985);
+}
+
+.dtec-button:disabled {
+    cursor: wait;
+    opacity: .64;
+}
+
+.dtec-button:focus-visible,
+.dtec-action:focus-visible,
+.dtec-card__link:focus-visible,
+.dtec-alert a:focus-visible,
+.dtec-kpi:focus-visible,
+.dtec-item:focus-visible {
+    outline: 3px solid rgba(23, 184, 196, .22);
+    outline-offset: 3px;
+}
+
+.dtec-button--hero {
+    border-color: rgba(255, 255, 255, .18);
+    color: #0c2e49;
+    background: linear-gradient(135deg, #ffffff, #e9f8fb);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .18);
+}
+
+.dtec-button--hero:hover:not(:disabled) {
+    border-color: rgba(101, 223, 224, .68);
+    color: #08243a;
+    background: linear-gradient(135deg, #ffffff, #dff8fb);
+    box-shadow: 0 19px 34px rgba(0, 0, 0, .22);
+}
+
+.dtec-action {
+    min-height: 41px;
+    padding: 10px 15px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--dtec-primary), var(--dtec-primary-dark));
+    box-shadow: 0 10px 22px rgba(16, 58, 94, .18);
+}
+
+.dtec-card__link,
+.dtec-alert a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: var(--dtec-primary-dark);
+    font-size: .75rem;
+    font-weight: 850;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        color var(--dtec-transition),
+        transform var(--dtec-transition);
+}
+
+.dtec-card__link:hover,
+.dtec-alert a:hover {
+    color: var(--dtec-cyan);
+    transform: translateX(2px);
+}
+
+.dtec-card__link svg,
+.dtec-alert a svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 6. Guías operativas
+   ========================================================================== */
+
+.dtec-guides {
+    margin-bottom: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.dtec-guides article {
+    min-width: 0;
+    min-height: 102px;
+    padding: 17px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border: 1px solid rgba(199, 216, 227, .9);
+    border-radius: var(--dtec-radius-lg);
+    background: rgba(255, 255, 255, .9);
+    box-shadow: var(--dtec-shadow-xs);
+    transition:
+        transform var(--dtec-transition),
+        border-color var(--dtec-transition),
+        box-shadow var(--dtec-transition);
+}
+
+.dtec-guides article:hover {
+    transform: translateY(-3px);
+    border-color: #b6d2e1;
+    box-shadow: var(--dtec-shadow-sm);
+}
+
+.dtec-guide-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    color: var(--dtec-primary-dark);
+    background: var(--dtec-primary-pale);
+}
+
+.dtec-guides article:nth-child(2) .dtec-guide-icon {
+    color: var(--dtec-danger);
+    background: var(--dtec-danger-pale);
+}
+
+.dtec-guides article:nth-child(3) .dtec-guide-icon {
+    color: var(--dtec-warning);
+    background: var(--dtec-warning-pale);
+}
+
+.dtec-guide-icon svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dtec-guides strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--dtec-ink);
+    font-size: .88rem;
+}
+
+.dtec-guides p {
+    margin: 0;
+    color: var(--dtec-muted);
+    font-size: .76rem;
+    line-height: 1.5;
+}
+
+/* 7. Estado de carga
+   ========================================================================== */
+
+.dtec-status {
+    min-height: 44px;
+    margin-bottom: 16px;
+    padding: 11px 15px 11px 40px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 1px solid #d7e4eb;
+    border-radius: 13px;
+    color: #5f7486;
+    background: rgba(255, 255, 255, .9);
+    box-shadow: var(--dtec-shadow-xs);
+    font-size: .76rem;
+    font-weight: 750;
+}
+
+.dtec-status::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    left: 17px;
+    border-radius: 50%;
+    background: var(--dtec-primary);
+    box-shadow: 0 0 0 5px rgba(29, 107, 158, .11);
+    animation: dtecStatusPulse 1.6s ease-in-out infinite;
+}
+
+.dtec-status--ok {
+    border-color: #c5e6d4;
+    color: #176b4c;
+    background: #f2fbf7;
+}
+
+.dtec-status--ok::before {
+    background: var(--dtec-success);
+    box-shadow: 0 0 0 5px rgba(23, 134, 95, .12);
+    animation: none;
+}
+
+.dtec-status--warning {
+    border-color: #efd9ae;
+    color: #93600d;
+    background: #fffaf0;
+}
+
+.dtec-status--warning::before {
+    background: var(--dtec-warning);
+    box-shadow: 0 0 0 5px rgba(185, 120, 15, .12);
+}
+
+.dtec-status--error {
+    border-color: #efcbc7;
+    color: #a83832;
+    background: #fff4f2;
+}
+
+.dtec-status--error::before {
+    background: var(--dtec-danger);
+    box-shadow: 0 0 0 5px rgba(196, 70, 63, .12);
+}
+
+/* 8. Perfil del técnico
+   ========================================================================== */
+
+.dtec-profile {
+    min-height: 104px;
+    margin-bottom: 16px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(199, 216, 227, .92);
+    border-radius: var(--dtec-radius-xl);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, .98), rgba(246, 251, 253, .97));
+    box-shadow: var(--dtec-shadow-sm);
+}
+
+.dtec-profile::after {
+    content: "";
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    right: -75px;
+    bottom: -100px;
+    border-radius: 50%;
+    background: rgba(29, 107, 158, .055);
+}
+
+.dtec-profile__avatar {
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    border-radius: 17px;
+    color: #fff;
+    background: linear-gradient(145deg, #1d6b9e, #0b304f);
+    box-shadow: 0 12px 25px rgba(16, 58, 94, .2);
+}
+
+.dtec-profile__avatar svg {
+    width: 27px;
+    height: 27px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dtec-profile__copy {
+    min-width: 0;
+}
+
+.dtec-profile__copy span,
+.dtec-profile__copy strong,
+.dtec-profile__copy small {
+    display: block;
+}
+
+.dtec-profile__copy span {
+    margin-bottom: 4px;
+    color: var(--dtec-primary);
+    font-size: .63rem;
+    font-weight: 900;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+}
+
+.dtec-profile__copy strong {
+    overflow: hidden;
+    color: var(--dtec-ink);
+    font-size: 1.05rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dtec-profile__copy small {
+    margin-top: 5px;
+    overflow: hidden;
+    color: var(--dtec-muted);
+    font-size: .75rem;
+    line-height: 1.4;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dtec-profile__state {
+    min-height: 34px;
+    padding: 8px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+    border: 1px solid #c8e6d8;
+    border-radius: 999px;
+    color: #176b4c;
+    background: #effaf5;
+    font-size: .68rem;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.dtec-profile__state i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22a876;
+    box-shadow: 0 0 0 4px rgba(34, 168, 118, .13);
+}
+
+/* 9. Alertas profesionales
+   ========================================================================== */
+
+.dtec-alert {
+    min-height: 92px;
+    margin-bottom: 14px;
+    padding: 17px 18px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 15px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--dtec-line);
+    border-radius: var(--dtec-radius-lg);
+    box-shadow: var(--dtec-shadow-xs);
+    animation: dtecAlertIn .35s ease both;
+}
+
+.dtec-alert::before {
+    content: "";
+    width: 4px;
+    position: absolute;
+    inset: 0 auto 0 0;
+}
+
+.dtec-alert--danger {
+    border-color: #efcbc7;
+    background:
+        radial-gradient(circle at 100% 0, rgba(196, 70, 63, .07), transparent 30%),
+        linear-gradient(135deg, #fff7f5, #fff);
+}
+
+.dtec-alert--danger::before {
+    background: var(--dtec-danger);
+}
+
+.dtec-alert--warning {
+    border-color: #efd9ae;
+    background:
+        radial-gradient(circle at 100% 0, rgba(185, 120, 15, .08), transparent 30%),
+        linear-gradient(135deg, #fffaf0, #fff);
+}
+
+.dtec-alert--warning::before {
+    background: var(--dtec-warning);
+}
+
+.dtec-alert__icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+}
+
+.dtec-alert--danger .dtec-alert__icon {
+    color: var(--dtec-danger);
+    background: var(--dtec-danger-pale);
+}
+
+.dtec-alert--warning .dtec-alert__icon {
+    color: var(--dtec-warning);
+    background: var(--dtec-warning-pale);
+}
+
+.dtec-alert__icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dtec-alert strong {
+    display: block;
+    color: var(--dtec-ink);
+    font-size: .86rem;
+}
+
+.dtec-alert p {
+    margin: 5px 0 0;
+    color: var(--dtec-muted);
+    font-size: .75rem;
+    line-height: 1.5;
+}
+
+/* 10. Indicadores
+   ========================================================================== */
+
+.dtec-kpis {
+    margin-bottom: 18px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.dtec-kpi {
+    min-width: 0;
+    min-height: 148px;
+    padding: 17px 18px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #dce7ed;
+    border-radius: 18px;
+    color: inherit;
+    background: #fff;
+    box-shadow: var(--dtec-shadow-xs);
+    text-decoration: none;
+    transition:
+        transform var(--dtec-transition),
+        border-color var(--dtec-transition),
+        box-shadow var(--dtec-transition);
+}
+
+.dtec-kpi::after {
+    content: "";
+    width: 82px;
+    height: 82px;
+    position: absolute;
+    right: -24px;
+    bottom: -35px;
+    border-radius: 50%;
+    background: rgba(29, 107, 158, .055);
+}
+
+.dtec-kpi:hover {
+    transform: translateY(-4px);
+    border-color: #b8d2df;
+    box-shadow: var(--dtec-shadow-sm);
+}
+
+.dtec-kpi__icon {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 13px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: var(--dtec-primary-dark);
+    background: var(--dtec-primary-pale);
+}
+
+.dtec-kpi__icon svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dtec-kpi > span:not(.dtec-kpi__icon) {
+    color: #587083;
+    font-size: .72rem;
+    font-weight: 800;
+}
+
+.dtec-kpi strong {
+    margin-top: 8px;
+    color: var(--dtec-primary-dark);
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.dtec-kpi small {
+    margin-top: 9px;
+    color: var(--dtec-muted-light);
+    font-size: .66rem;
+    line-height: 1.4;
+}
+
+.dtec-kpi--danger {
+    border-color: #edcfcc;
+    background: #fff9f8;
+}
+
+.dtec-kpi--danger .dtec-kpi__icon {
+    color: var(--dtec-danger);
+    background: var(--dtec-danger-pale);
+}
+
+.dtec-kpi--danger strong {
+    color: var(--dtec-danger);
+}
+
+.dtec-kpi--assigned .dtec-kpi__icon {
+    color: var(--dtec-blue);
+    background: var(--dtec-blue-pale);
+}
+
+.dtec-kpi--assigned strong {
+    color: var(--dtec-blue);
+}
+
+.dtec-kpi--success {
+    border-color: #cae4d8;
+    background: #f8fcfa;
+}
+
+.dtec-kpi--success .dtec-kpi__icon {
+    color: var(--dtec-success);
+    background: var(--dtec-success-pale);
+}
+
+.dtec-kpi--success strong {
+    color: var(--dtec-success);
+}
+
+.dtec-kpi--warning {
+    border-color: #ebdab7;
+    background: #fffcf7;
+}
+
+.dtec-kpi--warning .dtec-kpi__icon {
+    color: var(--dtec-warning);
+    background: var(--dtec-warning-pale);
+}
+
+.dtec-kpi--warning strong {
+    color: var(--dtec-warning);
+}
+
+.dtec-kpi--completed {
+    border-color: #d7d1f0;
+    background: #fbfaff;
+}
+
+.dtec-kpi--completed .dtec-kpi__icon {
+    color: var(--dtec-violet);
+    background: var(--dtec-violet-pale);
+}
+
+.dtec-kpi--completed strong {
+    color: var(--dtec-violet);
+}
+
+/* 11. Tarjetas y encabezados de sección
+   ========================================================================== */
+
+.dtec-card {
+    margin-bottom: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(202, 217, 227, .92);
+    border-radius: var(--dtec-radius-xl);
+    background: rgba(255, 255, 255, .96);
+    box-shadow: var(--dtec-shadow);
+}
+
+.dtec-card--featured {
+    border-color: #bfd9e7;
+}
+
+.dtec-card--danger {
+    border-color: #ead1cf;
+}
+
+.dtec-card--warning {
+    border-color: #eadbbd;
+}
+
+.dtec-card--success {
+    border-color: #cce2d8;
+}
+
+.dtec-card__head {
+    min-height: 96px;
+    padding: 20px 21px 18px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    border-bottom: 1px solid #e2ebf0;
+    background:
+        linear-gradient(180deg, rgba(250, 253, 254, .98), rgba(247, 251, 253, .96));
+}
+
+.dtec-card--danger .dtec-card__head {
+    background: linear-gradient(180deg, #fffafa, #fff);
+}
+
+.dtec-card--warning .dtec-card__head {
+    background: linear-gradient(180deg, #fffdf8, #fff);
+}
+
+.dtec-card--success .dtec-card__head {
+    background: linear-gradient(180deg, #f9fdfa, #fff);
+}
+
+.dtec-section-heading {
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+}
+
+.dtec-section-heading__icon {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: var(--dtec-primary-dark);
+    background: var(--dtec-primary-pale);
+}
+
+.dtec-card--danger .dtec-section-heading__icon {
+    color: var(--dtec-danger);
+    background: var(--dtec-danger-pale);
+}
+
+.dtec-card--warning .dtec-section-heading__icon {
+    color: var(--dtec-warning);
+    background: var(--dtec-warning-pale);
+}
+
+.dtec-card--success .dtec-section-heading__icon {
+    color: var(--dtec-success);
+    background: var(--dtec-success-pale);
+}
+
+.dtec-section-heading__icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dtec-card__head .dtec-eyebrow {
+    margin-bottom: 5px;
+    font-size: .61rem;
+}
+
+.dtec-card__head h2 {
+    font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+    line-height: 1.2;
+}
+
+.dtec-card__head p,
+.dtec-card__head span {
+    margin: 6px 0 0;
+    color: var(--dtec-muted);
+    font-size: .72rem;
+    line-height: 1.45;
+}
+
+.dtec-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 16px;
+}
+
+.dtec-grid > .dtec-card {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.dtec-grid--main,
+.dtec-grid--secondary {
+    margin-bottom: 16px;
+}
+
+.dtec-grid--bottom {
+    margin-bottom: 0;
+}
+
+/* 12. Actividad actual
+   ========================================================================== */
+
+.dtec-current {
+    min-height: 150px;
+    padding: 18px;
+}
+
+.dtec-current__item {
+    padding: 18px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 20px;
+    border: 1px solid #cee0e9;
+    border-radius: 17px;
+    background:
+        radial-gradient(circle at 100% 0, rgba(29, 107, 158, .06), transparent 30%),
+        linear-gradient(135deg, #f8fcfe, #fff);
+    box-shadow: var(--dtec-shadow-xs);
+}
+
+.dtec-current__item + .dtec-current__item {
+    margin-top: 12px;
+}
+
+.dtec-current__item.is-urgent {
+    border-color: #edcbc7;
+    background:
+        radial-gradient(circle at 100% 0, rgba(196, 70, 63, .08), transparent 30%),
+        linear-gradient(135deg, #fff8f7, #fff);
+}
+
+.dtec-current__main {
+    min-width: 0;
+}
+
+.dtec-current__main h3 {
+    margin: 12px 0 8px;
+    font-size: 1.08rem;
+}
+
+.dtec-current__main p {
+    margin: 0;
+    color: var(--dtec-muted);
+    font-size: .78rem;
+    line-height: 1.55;
+}
+
+.dtec-current__time {
+    min-width: 205px;
+    padding-left: 19px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid #dce7ed;
+    text-align: right;
+}
+
+.dtec-current__time span,
+.dtec-current__time strong {
+    display: block;
+}
+
+.dtec-current__time span {
+    color: var(--dtec-muted-light);
+    font-size: .67rem;
+    font-weight: 800;
+}
+
+.dtec-current__time strong {
+    margin: 7px 0 13px;
+    color: var(--dtec-primary-dark);
+    font-size: 1.35rem;
+}
+
+.dtec-row-title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.dtec-row-title > strong {
+    color: var(--dtec-ink-soft);
+    font-size: .82rem;
+}
+
+.dtec-meta {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 10px;
+}
+
+.dtec-meta span {
+    padding: 5px 8px;
+    border: 1px solid #dbe7ed;
+    border-radius: 999px;
+    color: #62798a;
+    background: #fff;
+    font-size: .63rem;
+    font-weight: 750;
+}
+
+/* 13. Listas operativas
+   ========================================================================== */
+
+.dtec-list {
+    min-height: 178px;
+    max-height: 430px;
+    padding: 4px 18px 10px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #b9ccd8 transparent;
+}
+
+.dtec-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dtec-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dtec-list::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: #b9ccd8;
+    background-clip: padding-box;
+}
+
+.dtec-item {
+    min-width: 0;
+    padding: 13px 4px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 11px;
+    border-bottom: 1px solid #e8eef2;
+    color: inherit;
+    text-decoration: none;
+    transition:
+        transform var(--dtec-transition),
+        background var(--dtec-transition);
+}
+
+.dtec-item:last-child {
+    border-bottom: 0;
+}
+
+a.dtec-item:hover {
+    transform: translateX(3px);
+    background: linear-gradient(90deg, rgba(233, 244, 251, .72), transparent);
+}
+
+.dtec-item > div {
+    min-width: 0;
+}
+
+.dtec-item strong,
+.dtec-item div > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dtec-item strong {
+    color: var(--dtec-ink-soft);
+    font-size: .76rem;
+    line-height: 1.35;
+}
+
+.dtec-item div > span {
+    margin-top: 4px;
+    color: var(--dtec-muted);
+    font-size: .67rem;
+    line-height: 1.35;
+}
+
+.dtec-item div > .dtec-wrap {
+    white-space: normal;
+}
+
+.dtec-item small {
+    max-width: 145px;
+    color: var(--dtec-muted-light);
+    font-size: .62rem;
+    font-weight: 750;
+    line-height: 1.35;
+    text-align: right;
+}
+
+.dtec-item--notice {
+    cursor: default;
+}
+
+.dtec-item--notice.is-unread {
+    margin-inline: -8px;
+    padding-inline: 12px;
+    border-radius: 12px;
+    background: #f2f8fc;
+}
+
+.dtec-badge {
+    min-height: 25px;
+    padding: 4px 8px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d7e4eb;
+    border-radius: 999px;
+    color: #365d76;
+    background: #edf5f9;
+    font-size: .56rem !important;
+    font-weight: 900;
+    letter-spacing: .025em;
+    line-height: 1.15;
+    text-transform: uppercase;
+}
+
+.dtec-badge--danger {
+    border-color: #efc9c5;
+    color: var(--dtec-danger);
+    background: var(--dtec-danger-pale);
+}
+
+.dtec-badge--warning {
+    border-color: #ead6aa;
+    color: var(--dtec-warning);
+    background: var(--dtec-warning-pale);
+}
+
+.dtec-badge--success {
+    border-color: #c6e1d5;
+    color: var(--dtec-success);
+    background: var(--dtec-success-pale);
+}
+
+.dtec-unread {
+    min-height: 31px;
+    padding: 6px 10px;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    border: 1px solid #c9dfeb;
+    border-radius: 999px;
+    color: var(--dtec-primary-dark) !important;
+    background: var(--dtec-primary-pale);
+    font-size: .64rem !important;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.dtec-empty {
+    min-height: 170px;
+    padding: 30px 16px;
+    display: grid;
+    place-items: center;
+    color: var(--dtec-muted-light);
+    font-size: .75rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* 14. Pie e imagen inferior
+   ========================================================================== */
+
+.dtec-footer {
+    margin-top: 22px;
+    padding: 18px 2px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border-top: 1px solid rgba(182, 201, 215, .7);
+    color: #75899a;
+    font-size: 11px;
+    font-weight: 750;
+    letter-spacing: .025em;
+}
+
+.dtec-tools-background {
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 1;
+    height: clamp(190px, 17vw, 260px);
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    background-image: url('../imagenes/herramienta_abajo.png');
+    background-repeat: no-repeat;
+    background-position: center calc(100% + 60px);
+    background-size: max(1120px, 100%) auto;
+    opacity: .38;
+    filter: saturate(.94) contrast(.96);
+    transform: translateZ(0);
+}
+
+.dtec-tools-background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(242, 247, 250, 1) 0%,
+        rgba(242, 247, 250, .68) 24%,
+        transparent 58%
+    );
+}
+
+/* 15. Animaciones
+   ========================================================================== */
+
+@keyframes dtecHeroIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dtecLive {
+    50% {
+        opacity: .55;
+        transform: scale(.82);
+    }
+}
+
+@keyframes dtecStatusPulse {
+    50% {
+        opacity: .48;
+        transform: scale(.82);
+    }
+}
+
+@keyframes dtecAlertIn {
+    from {
+        opacity: 0;
+        transform: translateY(-7px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 16. Responsive
+   ========================================================================== */
+
+@media (max-width: 1380px) {
+    .dtec-kpis {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1100px) {
+    .dtec-page {
+        padding-inline: 20px;
+    }
+
+    .dtec-hero__content {
+        align-items: flex-start;
+    }
+
+    .dtec-hero__actions {
+        min-width: 260px;
+    }
+
+    .dtec-guides {
+        grid-template-columns: 1fr;
+    }
+
+    .dtec-guides article {
+        min-height: 0;
+    }
+
+    .dtec-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .dtec-page {
+        padding: 16px 16px 270px;
+    }
+
+    .dtec-heading.dtec-hero {
+        min-height: 0;
+        padding: 29px 26px;
+    }
+
+    .dtec-hero__content {
+        display: grid;
+        gap: 25px;
+    }
+
+    .dtec-hero__actions {
+        min-width: 0;
+        grid-template-columns: minmax(0, 1fr) minmax(220px, .8fr);
+    }
+
+    .dtec-kpis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dtec-tools-background {
+        height: 220px;
+        background-size: max(980px, 145%) auto;
+        background-position: center calc(100% + 60px);
+    }
+}
+
+@media (max-width: 650px) {
+    .dtec-page {
+        padding: 13px 13px 245px;
+    }
+
+    .dtec-heading.dtec-hero {
+        margin-bottom: 14px;
+        padding: 25px 21px;
+        border-radius: 22px;
+    }
+
+    .dtec-hero h1 {
+        font-size: clamp(34px, 10vw, 45px);
+    }
+
+    .dtec-hero__description {
+        font-size: 14px;
+    }
+
+    .dtec-hero__meta {
+        display: grid;
+    }
+
+    .dtec-hero__actions {
+        grid-template-columns: 1fr;
+    }
+
+    .dtec-button--hero {
+        width: 100%;
+    }
+
+    .dtec-guides {
+        gap: 10px;
+    }
+
+    .dtec-guides article {
+        padding: 15px;
+    }
+
+    .dtec-profile {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .dtec-profile__state {
+        width: fit-content;
+        grid-column: 2;
+    }
+
+    .dtec-alert {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .dtec-alert a {
+        width: fit-content;
+        grid-column: 2;
+        justify-content: flex-start;
+    }
+
+    .dtec-kpis {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .dtec-kpi {
+        min-height: 136px;
+    }
+
+    .dtec-card {
+        border-radius: 19px;
+    }
+
+    .dtec-card__head {
+        min-height: 0;
+        padding: 18px 16px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dtec-section-heading__icon {
+        width: 43px;
+        height: 43px;
+        flex-basis: 43px;
+    }
+
+    .dtec-card__link {
+        margin-left: 56px;
+    }
+
+    .dtec-current {
+        padding: 13px;
+    }
+
+    .dtec-current__item {
+        grid-template-columns: 1fr;
+    }
+
+    .dtec-current__time {
+        min-width: 0;
+        padding: 15px 0 0;
+        align-items: flex-start;
+        border-top: 1px solid #dce7ed;
+        border-left: 0;
+        text-align: left;
+    }
+
+    .dtec-list {
+        max-height: none;
+        padding-inline: 13px;
+    }
+
+    .dtec-item {
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: flex-start;
+    }
+
+    .dtec-item small {
+        max-width: none;
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .dtec-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 10px;
+    }
+
+    .dtec-tools-background {
+        height: 195px;
+        background-size: auto 175px;
+        background-position: center calc(100% + 60px);
+        opacity: .34;
+    }
+}
+
+@media (max-width: 420px) {
+    .dtec-page {
+        padding-inline: 10px;
+    }
+
+    .dtec-heading.dtec-hero {
+        padding: 23px 18px;
+    }
+
+    .dtec-hero__mini-card {
+        display: none;
+    }
+
+    .dtec-profile {
+        padding: 15px;
+    }
+
+    .dtec-profile__avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+    }
+
+    .dtec-profile__copy small {
+        white-space: normal;
+    }
+
+    .dtec-alert {
+        grid-template-columns: 1fr;
+    }
+
+    .dtec-alert__icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .dtec-alert a {
+        grid-column: 1;
+    }
+
+    .dtec-card__head {
+        padding-inline: 14px;
+    }
+
+    .dtec-section-heading {
+        gap: 10px;
+    }
+
+    .dtec-card__link {
+        margin-left: 53px;
+    }
+
+    .dtec-item {
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .dtec-item small {
+        grid-column: 1;
+    }
+
+    .dtec-badge {
+        width: fit-content;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dtec-page *,
+    .dtec-page *::before,
+    .dtec-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}

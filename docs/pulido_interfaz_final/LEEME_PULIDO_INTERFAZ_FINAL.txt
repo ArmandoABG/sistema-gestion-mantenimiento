@@ -1,0 +1,55 @@
+PULIDO FINAL DE INTERFAZ · HISTORIAL TÉCNICO Y CAMPOS "OTRO"
+Fecha: 06-08-2026
+
+ARCHIVOS MODIFICADOS
+- css/style_mantenimientos_finalizados.css
+- css/style_mantenimiento_activo.css
+
+NO HAY CAMBIOS DE BASE DE DATOS.
+NO HAY MIGRACIONES SQL.
+NO SE MODIFICA LA LÓGICA DE CIERRES, RECOMENDACIONES, CANCELACIONES NI HISTORIALES.
+
+1. MANTENIMIENTOS FINALIZADOS
+- El listado de mantenimientos terminados tiene un área de scroll propia en escritorio.
+- La sección de cancelaciones administrativas tiene un área de scroll propia.
+- En pantallas grandes las cancelaciones pueden acomodarse en dos columnas.
+- Las tarjetas de cancelación son más compactas y consistentes con el estilo general.
+- Las descripciones de las tarjetas se resumen visualmente; el contenido completo sigue disponible en "Ver detalle completo".
+- Las listas largas de herramientas/refacciones dentro del detalle tienen scroll propio.
+- En móvil se desactivan los scrolls internos para evitar scrolls anidados incómodos.
+
+2. CAMPOS "OTRA HERRAMIENTA / OTRA REFACCIÓN"
+- Se corrigió una inconsistencia de clase CSS: el JavaScript genera
+  .mact-close-resource-other-row pero el CSS anterior estilaba .mact-close-other-row.
+- Ahora cada campo "Otro" tiene contenedor, borde, input, foco y botón de eliminar coherentes con el resto del formulario.
+- Los botones "Otra herramienta no registrada" y "Otra refacción no registrada" tienen una presentación clara y profesional.
+- Se eliminaron estilos muertos de la clase antigua que ya no era utilizada por el HTML.
+
+INSTALACIÓN DEL PARCHE
+1. Cerrar sesión.
+2. Copiar la carpeta css del parche sobre la carpeta css del proyecto.
+3. Confirmar el reemplazo de los dos archivos CSS.
+4. Iniciar sesión.
+5. En Mantenimientos finalizados y Actividad actual presionar Ctrl + F5.
+
+PRUEBAS RECOMENDADAS
+A) Mantenimientos finalizados
+- Consultar varios mantenimientos y confirmar que el bloque de resultados tenga scroll sin alargar toda la página.
+- Confirmar que la paginación siga funcionando.
+- Confirmar que "Ver detalle completo" muestre el texto completo.
+- Si existen muchas cancelaciones, confirmar que su bloque tenga scroll propio.
+- Abrir un historial con muchas herramientas/refacciones y comprobar el scroll de esas listas.
+
+B) Cierre de mantenimiento
+- Presionar "Otra herramienta no registrada" dos veces.
+- Confirmar que ambos inputs se vean correctamente y permitan escribir.
+- Eliminar uno con el botón X.
+- Repetir la prueba con refacciones.
+- Marcar "No se utilizaron" y comprobar que los controles se deshabiliten visualmente como antes.
+
+VALIDACIÓN ESTÁTICA REALIZADA
+- 65 archivos PHP: sintaxis correcta.
+- 34 bloques JavaScript embebidos: sintaxis correcta.
+- 178 require/include estáticos: todos resuelven a archivos existentes.
+- CSS modificado: llaves balanceadas.
+- No se modificaron endpoints ni consultas SQL.
