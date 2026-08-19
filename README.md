@@ -1,4 +1,4 @@
-\# SISTEMA DE GESTIÓN DE MANTENIMIENTO
+SISTEMA DE GESTIÓN DE MANTENIMIENTO
 
 
 
@@ -10,7 +10,7 @@ Sistema web desarrollado como parte de mis Residencias Profesionales, orientado 
 
 
 
-\## Descripción
+- Descripción
 
 
 
@@ -22,47 +22,47 @@ El proyecto fue desarrollado a partir del análisis de necesidades reales de ope
 
 
 
-\## Funcionalidades principales
+- Funcionalidades principales
 
 
 
-\* Registro y seguimiento de solicitudes de mantenimiento.
+* Registro y seguimiento de solicitudes de mantenimiento.
 
-\* Gestión de equipos.
+* Gestión de equipos.
 
-\* Asignación de personal técnico.
+* Asignación de personal técnico.
 
-\* Seguimiento de estados de los trabajos.
+* Seguimiento de estados de los trabajos.
 
-\* Administración de información relacionada con mantenimientos.
+* Administración de información relacionada con mantenimientos.
 
-\* Consulta y organización de registros.
+* Consulta y organización de registros.
 
-\* Control de usuarios y permisos.
+* Control de usuarios y permisos.
 
-\* Seguimiento del flujo de trabajo desde la solicitud hasta su conclusión.
-
-
-
-\## Tecnologías utilizadas
+* Seguimiento del flujo de trabajo desde la solicitud hasta su conclusión.
 
 
 
-\* \*\*PHP\*\*
-
-\* \*\*JavaScript\*\*
-
-\* \*\*HTML5\*\*
-
-\* \*\*CSS3\*\*
-
-\* \*\*MySQL\*\*
-
-\* \*\*SQL\*\*
+- Tecnologías utilizadas
 
 
 
-\## Experiencia adquirida
+* PHP
+
+* JavaScript
+
+* HTML5
+
+* CSS3
+
+* MySQL
+
+* SQL
+
+
+
+- Experiencia adquirida
 
 
 
@@ -70,23 +70,23 @@ Durante el desarrollo del proyecto he trabajado en:
 
 
 
-\* Análisis de requerimientos.
+* Análisis de requerimientos.
 
-\* Diseño y relación de bases de datos.
+* Diseño y relación de bases de datos.
 
-\* Desarrollo de lógica de negocio.
+* Desarrollo de lógica de negocio.
 
-\* Creación de interfaces web.
+* Creación de interfaces web.
 
-\* Validación de información.
+* Validación de información.
 
-\* Pruebas y corrección de errores.
+* Pruebas y corrección de errores.
 
-\* Adaptación de funcionalidades conforme a necesidades reales de operación.
+* Adaptación de funcionalidades conforme a necesidades reales de operación.
 
 
 
-\## Contexto del proyecto
+- Contexto del proyecto
 
 
 
@@ -94,21 +94,15 @@ Este sistema forma parte de mi experiencia durante las Residencias Profesionales
 
 
 
-El repositorio tiene fines de \*\*portafolio profesional\*\* y no contiene credenciales, contraseñas ni información confidencial de la organización.
+El repositorio tiene fines de portafolio profesional y no contiene credenciales, contraseñas ni información confidencial de la organización.
 
 
-
-\## Autor
-
+Autor
 
 
-\*\*Diego Armando Barboza Gonzalez\*\*
+Diego Armando Barboza Gonzalez
 
 
-
-Estudiante de Ingeniería en Sistemas Computacionales
-
-GitHub: \[ArmandoABG](https://github.com/ArmandoABG)
 
 
 
